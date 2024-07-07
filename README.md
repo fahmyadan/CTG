@@ -3,13 +3,17 @@ Codebase of Controllable Traffic Generation (CTG) and Controllable Traffic Gener
 
 This repo is mostly built on top of [traffic-behavior-simulation (tbsim)](https://github.com/NVlabs/traffic-behavior-simulation). The diffusion model part is built on top of initial implementation in [Diffuser](https://github.com/jannerm/diffuser). It also lightly uses [STLCG](https://github.com/StanfordASL/stlcg).
 
+# Pre-Trained Visualization
+
+![](diffuser.gif)
 
 ## Installation
 ### Basic (mainly based on tbsim)
 Create conda environment (Note nuplan-devkit needs `python>=3.9` so the virtual environment with python version 3.9 needs to be created instead of python 3.8.)
 ```angular2html
-conda create -n bg3.9 python=3.9
-conda activate bg3.9
+conda create -n bg3.8 python=3.8
+conda activate bg3.8
+sudo chmod +x setup.bash
 ```
 
 Install `CTG` (this repo)
