@@ -3,6 +3,7 @@ from copy import deepcopy
 # CHANGE: Change this to handle train-time rollout
 # from tbsim.configs.eval_config import TrainTimeEvaluationConfig
 from tbsim.configs.scene_edit_config import TrainTimeEvaluationConfig
+from datetime import datetime
 
 class TrainConfig(Dict):
     def __init__(self):
@@ -88,8 +89,10 @@ class ExperimentConfig(Dict):
         # The "log" directory will contain tensorboard and stdout txt logs. The "models" directory
         # will contain saved model checkpoints. The "videos" directory contains evaluation rollout
         # videos.
+
+        now = datetime.now()
         self.name = (
-            "test"  # name of the experiment (creates a subdirectory under root_dir)
+            now.strftime("test_%H_%M_%d%B")   # name of the experiment (creates a subdirectory under root_dir)
         )
 
         self.root_dir = "{}_trained_models/".format(self.algo.name)
