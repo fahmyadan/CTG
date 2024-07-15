@@ -16,7 +16,7 @@ from tbsim.utils.config_utils import get_experiment_config_from_file
 from tbsim.utils.batch_utils import set_global_batch_type
 from tbsim.utils.trajdata_utils import set_global_trajdata_batch_env, set_global_trajdata_batch_raster_cfg
 from tbsim.algos.factory import algo_factory
-
+import json
 os.environ["WANDB_DISABLE_CODE"] = "True"
 def main(cfg, auto_remove_exp_dir=False, debug=False):
     pl.seed_everything(cfg.seed)
@@ -273,6 +273,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "--debug", action="store_true", help="Debug mode, suppress wandb logging, etc."
     )
+    parser.add_argument(
+        "--overrides",
+        type=str,
+        default=None,
+        help="(optional) if provided, override training configs",
+    )
 
     args = parser.parse_args()
 
@@ -287,6 +293,12 @@ if __name__ == "__main__":
         raise Exception(
             "Need either a config name or a json file to create experiment config"
         )
+
+
+    if args.overrides:
+        ovride =  json.load(open(args.overrides, "r"))
+        default_config.train.update(ovride)
+
 
     if args.name is not None:
         default_config.name = args.name

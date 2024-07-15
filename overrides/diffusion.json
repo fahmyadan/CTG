@@ -1,0 +1,8 @@
+{
+    "training": {
+        "batch_size": 256
+    },
+    "validation": {
+        "batch_size": 32
+    }
+}
